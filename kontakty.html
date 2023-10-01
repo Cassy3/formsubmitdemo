@@ -1,0 +1,151 @@
+{% extends 'utulek/layout.html' %}
+
+
+{% block utulek_content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+<style>
+
+    #map {
+        margin: 20px;
+        width: 25%;
+        height: 300px;
+    }
+
+    .mail_form {
+        margin-top: -30rem;
+        margin-left: 650px;
+        margin-right: 150px;
+        margin-bottom: 100px;
+    }
+    #form {
+        font-size: 25px;
+        margin-bottom: 1rem;
+    }
+    #kontakty {
+        margin-top: -2rem;
+        font-size: 25px;
+    }
+
+    @media screen and (max-width: 699px) {
+        .mail_form {
+            display: block;
+			position: relative;
+			margin: auto;
+
+        }
+
+    }
+    @media screen and (min-width: 700px) and (max-width: 899px) {
+        .mail_form {
+            display: block;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 90px;
+        }
+
+    }
+    @media screen and (max-width: 699px) {
+         #map {
+            display: block;
+			position: relative;
+			margin: auto;
+			width: 60%;
+        }
+    }
+    @media screen and (min-width: 700px) and (max-width: 899px) {
+        #map {
+            display: block;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 90px;
+        }
+
+    }
+
+</style>
+<div>
+
+<br>
+    <p id="kontakty"><strong>Kontakty:</strong></p>
+
+         <br>
+         <br>
+         <strong>Adresa:</strong>
+Kladno 272 00 Máchova 1696 IČO: 25378145 Česká republika
+<br>
+         <strong>E-mail:</strong>
+utulek@gmail.com
+<br>
+         <strong>Mobil:</strong>
++420 601 85 73 11
+<br>
+         <strong>Bankovní údaje:</strong>
+č.účtu: 201 937 111/0800
+Česká spořitelna a.s., Kladno, Lipová 222
+<br>
+(Všechny poskytnuté dary si můžete odepsat z daňového zakladu – zákon 586/92Sb.)
+
+</div>
+
+<div id="map"></div>
+
+<div class="mail_form" action="https://formsubmit.co/cassy3@seznam.cz" method="POST">
+    <p id="form"><strong>Kontaktní formulář: </strong></p>
+    <div class="field">
+        <label class="label">Jméno</label>
+        <div class="control">
+            <input class="input" type="text" placeholder="Jméno a příjmení">
+        </div>
+    </div>
+
+
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input is-danger" type="email" placeholder="Vložte e-mail" value="@">
+        <span class="icon is-small is-left">
+          <i class="fa fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fa fa-exclamation-triangle"></i>
+        </span>
+      </div>
+      <p class="help is-danger">Tato e-mailová adresa je neplatná</p>
+    </div>
+
+    <div class="field">
+      <label class="label">Text zprávy</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="Text"></textarea>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">Odeslat</button>
+      </div>
+    </div>
+</div>
+
+<script>
+
+var mapOptions = {
+            center: [50.141699, 14.106747],
+            zoom: 17
+         }
+         var map = new L.map('map', mapOptions);
+
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+         map.addLayer(layer);
+
+        var marker = L.marker([50.1, -0.09]).addTo(map);
+
+</script>
+
+{% endblock %}
